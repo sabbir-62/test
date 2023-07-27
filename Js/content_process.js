@@ -1,20 +1,7 @@
+// Move the declarations outside of the function to make them global variables
 let text_content = document.getElementById('note-writting');
 let content = document.querySelector('.content');
 let paragraph = null;
-
-text_content.addEventListener('input', () => {
-    let text = text_content.value;
-    paragraph = document.createElement('p');
-    paragraph.innerHTML = text;
-});
-
-let addBtn = document.querySelector('.add-btn');
-
-addBtn.addEventListener('click', () => {
-    content.appendChild(paragraph);
-    text_content.value = '';
-});
-
 let stream;
 const videoElement = document.getElementById('video');
 const canvasElement = document.getElementById('canvas');
@@ -26,27 +13,35 @@ const capturedPhotoWrapper = document.getElementById('capturedPhotoWrapper');
 const capturedPhoto = document.getElementById('capturedPhoto');
 const backToCameraButton = document.getElementById('backToCameraButton');
 
-
-
 // Function to start the camera
 async function startCamera() {
-    try {
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // For mobile browsers supporting "MediaDevices.getUserMedia()"
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      } else {
-        // For desktop browsers using the legacy "getUserMedia()"
-        stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      }
-      
-      videoElement.srcObject = stream;
-      captureButton.disabled = false;
-      stopButton.disabled = false;
-      startButton.disabled = true;
-    } catch (error) {
-      console.error('Error accessing the camera:', error);
+  try {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      // For mobile browsers supporting "MediaDevices.getUserMedia()"
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    } else if (navigator.getUserMedia) {
+      // For desktop browsers using the legacy "getUserMedia()"
+      stream = await navigator.getUserMedia({ video: true });
+    } else {
+      throw new Error('Camera access not supported');
     }
+
+    videoElement.srcObject = stream;
+    captureButton.disabled = false;
+    stopButton.disabled = false;
+    startButton.disabled = true;
+
+    // Hide the "Start Camera" button after the camera is started
+    const startCameraButton = document.getElementById('startCameraButton');
+    startCameraButton.style.display = 'none';
+  } catch (error) {
+    console.error('Error accessing the camera:', error);
   }
+}
+
+// Add event listener to the "Start Camera" button
+const startCameraButton = document.getElementById('startCameraButton');
+startCameraButton.addEventListener('click', startCamera);
 
 // Function to capture a photo
 function capturePhoto() {
