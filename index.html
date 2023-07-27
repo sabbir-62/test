@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Class Note</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    
-  </head>
-  <body>
-    <div class="wrapper">
-      <nav class="bg-success">
-        <div class="flex">
-          <div class="left-nav">
-            <ul class="flex my-nav">
-              <li class="text-white my-nav-item file-title">File name</li>
-              <li class="text-white my-nav-item add-file">+</li>
-            </ul>
-          </div>
-          <div class="right">
-            <button class="btn btn-danger">Save as pdf</button>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Note</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="bg-success">
+      <div class="flex">
+        <div class="left-nav">
+          <ul class="flex my-nav">
+            <li class="text-white my-nav-item file-title">File name</li>
+            <li class="text-white my-nav-item add-file">+</li>
+          </ul>
         </div>
-      </nav>
+        <div class="right">
+          <button class="btn btn-danger">Save as pdf</button>
+        </div>
+      </div>
+    </nav>
 
-      <section class="note">
-        <div class="content"></div>
+    <section class="note">
+      <div class="content"></div>
 
-        <form action="">
-          <input class="note-writting" id="note-writting" type="text" placeholder="Start keeping note"/>
-        </form>
-        <div class="add-btn">
-          <button class="btn btn-success add-btn" id="addText">Add Text</button>
+      <form action="">
+        <input class="note-writting" id="note-writting" type="text" placeholder="Start keeping note"/>
+      </form>
+      <div class="add-btn">
+        <button class="btn btn-success add-btn" id="addText">Add Text</button>
+      </div>
+
+      <div class="camera-container">
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+      </div>
+
+      <button id="startCameraButton" class="btn btn-primary">Start Camera</button>
+
+      <div class="all-btn" id="all-btn">
+        <div class="button-container">
+          <button class="my-btn" id="startButton">
+            <img class="icons" src="img/camera.png" alt="Open Camera" title="Open Camera">
+          </button>
+          <button class="my-btn" id="captureButton">
+            <img class="icons" src="img/capture.png" alt="Capture Picture" title="Capture Picture">
+          </button>
+          <button class="my-btn" id="stopButton">
+            <img class="icons" src="img/cancel.png" alt="Stop Camera" title="Stop Camera">
+          </button>
         </div>
 
-        <div class="camera-container">
-          <video id="video" autoplay playsinline></video>
-          <canvas id="canvas" style="display: none;"></canvas>
-        </div>
-        
-        <div class="all-btn" id="all-btn">
-          <div class="button-container">
-            <button class="my-btn" id="startButton">
-              <img class="icons" src="img/camera.png" alt="Open Camera" title="Open Camera">
-            </button>
-            <button class="my-btn" id="captureButton">
-              <img class="icons" src="img/capture.png" alt="Capture Picture" title="Capture Picture">
-            </button>
-            <button class="my-btn" id="stopButton">
-              <img class="icons" src="img/cancel.png" alt="Stop Camera" title="Stop Camera">
-            </button>
+        <div id="capturedPhotoContainer" style="display: none;">
+          <h2>Captured Photo:</h2>
+          <div id="capturedPhotoWrapper">
+            <img id="capturedPhoto" src="" alt="Captured Photo">
           </div>
-        
-          <div id="capturedPhotoContainer" style="display: none;">
-            <h2>Captured Photo:</h2>
-            <div id="capturedPhotoWrapper">
-              <img id="capturedPhoto" src="" alt="Captured Photo">
-            </div>
-            <button id="backToCameraButton">Back to Camera</button>
-          </div>
+          <button id="backToCameraButton">Back to Camera</button>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+  </div>
 
-    <script src="Js/content_process.js"></script>
-  </body>
+  <script src="Js/content_process.js"></script>
+</body>
 </html>

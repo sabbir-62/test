@@ -109,6 +109,14 @@ button {
     max-width: 100%;
   }
 
+  .content {
+    width: 80%;
+  }
+
+  .content > img {
+    width: 100%;
+  }
+
   #all-btn {
     top: 0;
   }
